@@ -3,14 +3,22 @@ package net.ash.shoppingBackend.DAOImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import net.ash.shoppingBackend.DAO.CategoryDao;
 import net.ash.shoppingBackend.Model.Category;
+import net.ash.shoppingBackend.SessionUtil.SessionUtil;
 
 @Repository("ctgryDao")
 public class CategoryDaoImpl implements CategoryDao {
 
+	@Autowired
+	private static SessionUtil ssnUtil;
+	
 	private static List<Category> categories = new ArrayList<>();
 
 	static {
@@ -56,6 +64,22 @@ public class CategoryDaoImpl implements CategoryDao {
 				return ct;
 		}
 		return null;
+	}
+
+	@Override
+	@Transactional
+	public boolean add(Category ct) {
+		Session ssn = ssnUtil.getAnnotatedSession();
+		try {
+		ssn.persist(ct);
+		return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}finally {
+			ssn.close();
+		}
+		
 	}
 
 }

@@ -31,13 +31,13 @@ public class PageController {
 		return mv;
 	}*/
 	@Autowired
-	private CategoryDao ctgryDao;
+	private CategoryDao categoryDao;
 	
 	@RequestMapping(value = {"/", "/home", "/index"})
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Home");
-		mv.addObject("ctgries", ctgryDao.list());
+		mv.addObject("ctgries", categoryDao.list());
 		mv.addObject("userClickHome", true);
 		return mv;
 	}
@@ -63,7 +63,7 @@ public class PageController {
 	public ModelAndView showAllProducts() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "All Products");
-		mv.addObject("ctgries", ctgryDao.list());
+		mv.addObject("ctgries", categoryDao.list());
 		mv.addObject("userClickAllProducts", true);
 		return mv;
 	}
@@ -73,9 +73,9 @@ public class PageController {
 	@RequestMapping("/show/category/{id}/products")
 	public ModelAndView showCategoryProduct(@PathVariable("id")int id) {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("ctgries", ctgryDao.list());
+		mv.addObject("ctgries", categoryDao.list());
 		Category ct = null;
-		ct = ctgryDao.get(id);
+		ct = categoryDao.get(id);
 		mv.addObject("title", ct.getCtgryName());
 		mv.addObject("category", ct);
 		mv.addObject("userClickCategoryProduct", true);
