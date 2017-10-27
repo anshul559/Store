@@ -2,7 +2,6 @@ package net.ash.shoppingBackend.SessionUtil;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 
@@ -10,7 +9,7 @@ public class SessionUtil {
 	
 	public Session getAnnotatedSession() {
 		
-		Session ssn = new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();
+		Session ssn = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();
 		return ssn;
 	}
 	

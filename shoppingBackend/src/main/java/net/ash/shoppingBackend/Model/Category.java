@@ -24,7 +24,7 @@ public class Category {
 	@Column(name="CATEGORY_DESCRIPTION")
 	private String ctgryDesc;
 	@Version
-	@Column(name="CATEGORY_VERSION-No")
+	@Column(name="CATEGORY_VERSION")
 	private int ctgryV;
 	public long getCtgryId() {
 		return ctgryId;

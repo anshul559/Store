@@ -1,78 +1,56 @@
 package net.ash.shoppingBackend.DAOImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.hibernate.Session;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import net.ash.shoppingBackend.DAO.CategoryDao;
 import net.ash.shoppingBackend.Model.Category;
-import net.ash.shoppingBackend.SessionUtil.SessionUtil;
-
-@Repository("ctgryDao")
+@Repository("categoryDao")
 public class CategoryDaoImpl implements CategoryDao {
-
-	@Autowired
-	private static SessionUtil ssnUtil;
 	
-	private static List<Category> categories = new ArrayList<>();
 
-	static {
-		Category ctgry = new Category();
-		ctgry.setCtgryId(1);
-		ctgry.setCtgryActv(true);
-		ctgry.setCtgryName("Telivision");
-		ctgry.setCtgryImg("CT_1.png");
-		ctgry.setCtgryDesc("LG-SmartTV");
-
-		categories.add(ctgry);
-
-		ctgry = new Category();
-
-		ctgry.setCtgryId(2);
-		ctgry.setCtgryActv(true);
-		ctgry.setCtgryName("Laptop");
-		ctgry.setCtgryImg("CT_2.png");
-		ctgry.setCtgryDesc("LG-E530");
-
-		categories.add(ctgry);
-
-		ctgry = new Category();
-
-		ctgry.setCtgryId(3);
-		ctgry.setCtgryActv(true);
-		ctgry.setCtgryName("Mobile");
-		ctgry.setCtgryImg("CT_3.png");
-		ctgry.setCtgryDesc("OPPO-F1S");
-
-		categories.add(ctgry);
-	}
 
 	@Override
-	public List<Category> list() {
-		return categories;
+	public Category get(long id) {
+		Session ssn = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();
+		Category ct = (Category)ssn.get(Category.class, Long.valueOf(id));
+		
+		return ct;
 	}
 
-	@Override
-	public Category get(int id) {
-		for(Category ct : categories) {
-			if(ct.getCtgryId() == id)
-				return ct;
-		}
-		return null;
-	}
+	
 
 	@Override
-	@Transactional
 	public boolean add(Category ct) {
-		Session ssn = ssnUtil.getAnnotatedSession();
+		 Session ssn = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();	
+		 Transaction t = ssn.beginTransaction();
+		 try {
+			ssn.persist(ct);
+			t.commit();
+			System.out.println("Object save success");
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			ssn.close();
+		}
+
+	}
+
+	@Override
+	public boolean update(Category ct) {
+		Session ssn = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();
+		Transaction t = ssn.beginTransaction();
 		try {
-		ssn.persist(ct);
-		return true;
+			ssn.update(ct);
+			t.commit();
+			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -80,6 +58,34 @@ public class CategoryDaoImpl implements CategoryDao {
 			ssn.close();
 		}
 		
+	}
+
+	@Override
+	public boolean delete(Category ct) {
+		Session ssn = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();
+		Transaction t = ssn.beginTransaction();
+		try {
+				ct.setCtgryActv(false);
+				ssn.update(ct);
+				t.commit();
+				return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}finally {
+			ssn.close();
+		}
+		
+	}
+
+
+	@Override
+	public List<Category> listAll() {
+		Session ssn = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();
+		String hql = "SELECT c FROM Category c WHERE c.ctgryActv=:active";
+		Query q = ssn.createQuery(hql);
+		q.setParameter("active", true);
+		return q.getResultList();
 	}
 
 }

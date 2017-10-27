@@ -37,7 +37,7 @@ public class PageController {
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Home");
-		mv.addObject("ctgries", categoryDao.list());
+		mv.addObject("ctgries", categoryDao.listAll());
 		mv.addObject("userClickHome", true);
 		return mv;
 	}
@@ -63,7 +63,7 @@ public class PageController {
 	public ModelAndView showAllProducts() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "All Products");
-		mv.addObject("ctgries", categoryDao.list());
+		mv.addObject("ctgries", categoryDao.listAll());
 		mv.addObject("userClickAllProducts", true);
 		return mv;
 	}
@@ -71,9 +71,9 @@ public class PageController {
 	
 	/*Get Category Products*/
 	@RequestMapping("/show/category/{id}/products")
-	public ModelAndView showCategoryProduct(@PathVariable("id")int id) {
+	public ModelAndView showCategoryProduct(@PathVariable("id")long id) {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("ctgries", categoryDao.list());
+		mv.addObject("ctgries", categoryDao.listAll());
 		Category ct = null;
 		ct = categoryDao.get(id);
 		mv.addObject("title", ct.getCtgryName());
