@@ -36,6 +36,12 @@ public class PageController {
 	@RequestMapping(value = {"/", "/home", "/index"})
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
+		Category ct = new Category();
+		ct.setCtgryActv(true);
+		ct.setCtgryName("video-Game");
+		ct.setCtgryImg("CT_41.png");
+		ct.setCtgryDesc("Playing games");
+		categoryDao.add(ct);
 		mv.addObject("title", "Home");
 		mv.addObject("ctgries", categoryDao.listAll());
 		mv.addObject("userClickHome", true);

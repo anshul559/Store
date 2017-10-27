@@ -3,6 +3,7 @@ package net.ash.shoppingBackend.Model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -11,51 +12,58 @@ import javax.persistence.Version;
 @Table(name="category")
 public class Category {
 	
-	@Id
-	@GeneratedValue
-	@Column(name="CATEGORY_ID")
+
 	private long ctgryId;
-	@Column(name="CATEGORY_ACTIVE")
+	
 	private boolean ctgryActv;
-	@Column(name="CATEGORY_NAME")
+	
 	private String ctgryName;
-	@Column(name="CATEGORY_IMG")
+	
 	private String ctgryImg;
-	@Column(name="CATEGORY_DESCRIPTION")
+	
 	private String ctgryDesc;
-	@Version
-	@Column(name="CATEGORY_VERSION")
+	
 	private int ctgryV;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="CATEGORY_ID")
 	public long getCtgryId() {
 		return ctgryId;
 	}
 	public void setCtgryId(long ctgryId) {
 		this.ctgryId = ctgryId;
 	}
+	@Column(name="CATEGORY_NAME")
 	public String getCtgryName() {
 		return ctgryName;
 	}
 	public void setCtgryName(String ctgryName) {
 		this.ctgryName = ctgryName;
 	}
+	@Column(name="CATEGORY_IMG")
 	public String getCtgryImg() {
 		return ctgryImg;
 	}
 	public void setCtgryImg(String ctgryImg) {
 		this.ctgryImg = ctgryImg;
 	}
+	@Column(name="CATEGORY_DESCRIPTION")
 	public String getCtgryDesc() {
 		return ctgryDesc;
 	}
 	public void setCtgryDesc(String ctgryDesc) {
 		this.ctgryDesc = ctgryDesc;
 	}
+	@Column(name="CATEGORY_ACTIVE")
 	public boolean isCtgryActv() {
 		return ctgryActv;
 	}
 	public void setCtgryActv(boolean ctgryActv) {
 		this.ctgryActv = ctgryActv;
 	}
+	@Version
+	@Column(name="CATEGORY_VERSION")
 	public int getCtgryV() {
 		return ctgryV;
 	}
