@@ -23,53 +23,45 @@ public class Category {
 	
 	private String ctgryDesc;
 	
-	private int ctgryV;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="CATEGORY_ID")
+	@Column(name="id")
 	public long getCtgryId() {
 		return ctgryId;
 	}
 	public void setCtgryId(long ctgryId) {
 		this.ctgryId = ctgryId;
 	}
-	@Column(name="CATEGORY_NAME")
+	@Column(name="name")
 	public String getCtgryName() {
 		return ctgryName;
 	}
 	public void setCtgryName(String ctgryName) {
 		this.ctgryName = ctgryName;
 	}
-	@Column(name="CATEGORY_IMG")
+	@Column(name="image_url")
 	public String getCtgryImg() {
 		return ctgryImg;
 	}
 	public void setCtgryImg(String ctgryImg) {
 		this.ctgryImg = ctgryImg;
 	}
-	@Column(name="CATEGORY_DESCRIPTION")
+	@Column(name="description")
 	public String getCtgryDesc() {
 		return ctgryDesc;
 	}
 	public void setCtgryDesc(String ctgryDesc) {
 		this.ctgryDesc = ctgryDesc;
 	}
-	@Column(name="CATEGORY_ACTIVE")
+	@Column(name="is_active")
 	public boolean isCtgryActv() {
 		return ctgryActv;
 	}
 	public void setCtgryActv(boolean ctgryActv) {
 		this.ctgryActv = ctgryActv;
 	}
-	@Version
-	@Column(name="CATEGORY_VERSION")
-	public int getCtgryV() {
-		return ctgryV;
-	}
-	public void setCtgryV(int ctgryV) {
-		this.ctgryV = ctgryV;
-	}
+
 	
 	
 	

@@ -3,21 +3,26 @@ package net.ash.shoppingBackend.DAOImpl;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.ash.shoppingBackend.DAO.CategoryDao;
 import net.ash.shoppingBackend.Model.Category;
 @Repository("categoryDao")
+@Transactional
 public class CategoryDaoImpl implements CategoryDao {
 	
+	private static SessionFactory ssnFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+	private static Session ssn;
 
 
 	@Override
 	public Category get(long id) {
-		Session ssn = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();
+		ssn = ssnFactory.openSession();
 		Category ct = (Category)ssn.get(Category.class, Long.valueOf(id));
 		
 		return ct;
@@ -27,11 +32,10 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	@Override
 	public boolean add(Category ct) {
-		 Session ssn = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();	
-		 Transaction t = ssn.beginTransaction();
+		ssn = ssnFactory.openSession();	
+		
 		 try {
 			ssn.persist(ct);
-			t.commit();
 			System.out.println("Object save success");
 			return true;
 		} catch (Exception e) {
@@ -45,11 +49,11 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	@Override
 	public boolean update(Category ct) {
-		Session ssn = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();
-		Transaction t = ssn.beginTransaction();
+		ssn = ssnFactory.openSession();
+		
 		try {
 			ssn.update(ct);
-			t.commit();
+			
 			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -62,12 +66,12 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	@Override
 	public boolean delete(Category ct) {
-		Session ssn = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();
-		Transaction t = ssn.beginTransaction();
+		ssn = ssnFactory.openSession();
+		
 		try {
 				ct.setCtgryActv(false);
 				ssn.update(ct);
-				t.commit();
+				
 				return true;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -81,7 +85,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	@Override
 	public List<Category> listAll() {
-		Session ssn = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory().openSession();
+		ssn = ssnFactory.openSession();
 		String hql = "SELECT c FROM Category c WHERE c.ctgryActv=:active";
 		Query q = ssn.createQuery(hql);
 		q.setParameter("active", true);

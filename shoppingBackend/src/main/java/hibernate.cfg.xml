@@ -6,14 +6,15 @@
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost/Besant</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">5590</property>
+        <property name="hibernate.connection.username">ansh</property>
+        <property name="hibernate.connection.password"></property>
         
-        
+        <property name="hibernate.connection.pool_size">1</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.hbm2dll.auto">create</property>
+        <property name="hibernate.hbm2dll.auto">update</property>
         <property name="hibernate.show_sql">true</property>
         
         <mapping class="net.ash.shoppingBackend.Model.Category"/>
+        <mapping class="net.ash.shoppingBackend.Model.Product"/>
     </session-factory>
 </hibernate-configuration>
