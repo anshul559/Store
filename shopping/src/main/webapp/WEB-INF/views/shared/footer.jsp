@@ -1,5 +1,5 @@
-   <div class="container footer">
-
+   <div class="container footer ">
+		<div class="row">
         <hr>
 
         <footer>
@@ -10,6 +10,6 @@
                 </div>
             </div>
         </footer>
-
+	</div>
     </div>
     <!-- /.container -->

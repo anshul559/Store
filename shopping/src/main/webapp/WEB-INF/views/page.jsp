@@ -21,15 +21,23 @@
 <title>Shopping-${title}</title>
 <script type="text/javascript">
 	window.menu = "${title}";
+	window.contextRoot = "${contextRoot}";
+	
 </script>
+
+<!--Readable Custom Theme CSS -->
+<link href="${css}/mytheme.css" rel="stylesheet">
 
 <!-- Bootstrap core CSS -->
 <link href="${css}/bootstrap.css" rel="stylesheet">
 
-<link href="${css}/mytheme.css" rel="stylesheet">
+<!--DataTable Bootstrap CSS -->
+<link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
+
 
 <!-- Add custom CSS here -->
 <link href="${css}/myapp.css" rel="stylesheet">
+
 
 </head>
 
@@ -56,10 +64,16 @@
 		<c:if test="${userClickContact == true}">
 			<%@include file="contact.jsp"%>
 		</c:if>
-		
+
 		<!--Loading only when click on contact us  -->
-		<c:if test="${userClickAllProducts == true or userClickCategoryProduct == true}">
+		<c:if
+			test="${userClickAllProducts == true or userClickCategoryProduct == true}">
 			<%@include file="AllProducts.jsp"%>
+		</c:if>
+
+		<!--Loading only when click single product show button-->
+		<c:if test="${userClickShowProduct == true}">
+			<%@include file="singleProduct.jsp"%>
 		</c:if>
 
 	</div>
@@ -67,9 +81,20 @@
 
 	<%@include file="./shared/footer.jsp"%>
 
-	<!-- JavaScript -->
+	<!-- Main Jquery -->
 	<script src="${js}/jquery.js"></script>
+	
+	<!--Bootstrap Jquery Js -->
 	<script src="${js}/bootstrap.js"></script>
+	<!--DataTable Jquery JS -->
+	<script src="${js}/jquery.dataTables.js"></script>
+	<!--DataTable Bootstrap JS -->
+	<script src="${js}/dataTables.bootstrap.js"></script>
+	
+	
+		
+	
+	<!--Custom JavaScript Js -->
 	<script src="${js}/myapp.js"></script>
 
 </body>

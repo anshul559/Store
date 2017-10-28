@@ -13,7 +13,7 @@
    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<context:component-scan base-package="net.ash.shopping.controller"></context:component-scan>
-	<context:component-scan base-package="net.ash.shoppingBackend.DAOImpl"></context:component-scan>
+	<context:component-scan base-package="net.ash.shoppingBackend"></context:component-scan>
 	<context:component-scan base-package="net.ash.shoppingBackend.Model"></context:component-scan>
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
