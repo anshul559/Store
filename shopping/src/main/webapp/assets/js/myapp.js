@@ -25,7 +25,7 @@ $(document).ready(function(){
 		console.log("Table is inserted");
 		$table.dataTable({
 			lengthMenu: [[3,5,10,-1], ['3 Records','5 Records','10 Records','All Records']],
-			pageLength: 5,
+			pageLength: -1,
 			ajax:{
 				url: jsonUrl,
 				dataSrc: ''
@@ -50,7 +50,13 @@ $(document).ready(function(){
 							}
 						},
 						{
-							data: 'quantity'
+							data: 'quantity',
+							mRender: function(data, type, row){
+								if(data < 1)
+									return '<span style="color:red;"><strong>Out of Stock</strong></span>'
+								
+									return data
+							}
 						},
 						{
 							data: 'id',
@@ -58,7 +64,14 @@ $(document).ready(function(){
 							mRender: function(data, type, row){
 								var str = '';
 								str += '<a href="'+window.contextRoot+'/show/'+data+'/product" class="btn btn-success"><span class="glyphicon glyphicon-eye-open"></span></a> &#160;';
-								str += '<a href="'+window.contextRoot+'/cart/add/'+data+'/product" class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></a>';
+								
+								if(row.quantity < 1){
+									str += '<a href="javascript:void(0)" class="btn btn-danger disabled"><span class="glyphicon glyphicon-shopping-cart"></a>';
+								}
+								else {
+									str += '<a href="'+window.contextRoot+'/cart/add/'+data+'/product" class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart"></a>';
+								}
+						
 								return str
 							}
 						}

@@ -1,24 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
+<!-- <configuration>
 
 	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<Pattern>
-				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg %n
+				 %-5level %d[HH:mm:ss.SSS] [%thread] %logger{36} - %msg%n
 			</Pattern>
 		</layout>
 	</appender>
-	<logger name="net.ash" level="error"
-		additivity="false">
-		<appender-ref ref="consoleAppender" />
-	</logger>
-	<logger name="net.ash" level="trace"
+	
+	<logger name="net.ash" level="DEBUG"
 		additivity="false">
 		<appender-ref ref="consoleAppender" />
 	</logger>
 
-	<root level="error">
+	<root level="INFO">
 		<appender-ref ref="consoleAppender" />
 	</root>
+
+</configuration> -->
+
+<configuration>
+
+<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+
+<encoder>
+
+<pattern>%n%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+
+</encoder>
+
+</appender>
+
+<logger name="net.ash" level="DEBUG"/>
+
+ <root level="INFO">
+
+<appender-ref ref="STDOUT" />
+
+</root>
 
 </configuration>

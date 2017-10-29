@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.ash.shopping.exception.CategoryNotFoundException;
+import net.ash.shopping.exception.ProductNotFoundException;
 import net.ash.shoppingBackend.DAO.CategoryDao;
 import net.ash.shoppingBackend.DAO.ProductDao;
 import net.ash.shoppingBackend.Model.Category;
@@ -83,22 +85,26 @@ public class PageController {
 	
 	/*Get Category Products*/
 	@RequestMapping("/show/category/{id}/products")
-	public ModelAndView showCategoryProduct(@PathVariable("id")long id) {
+	public ModelAndView showCategoryProduct(@PathVariable("id")long id) throws CategoryNotFoundException {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("ctgries", categoryDao.listAll());
 		Category ct = null;
 		ct = categoryDao.get(id);
+		if(ct == null) throw new CategoryNotFoundException();
 		mv.addObject("title", ct.getCtgryName());
 		mv.addObject("category", ct);
 		mv.addObject("userClickCategoryProduct", true);
 		return mv;
 	}
 	
+
 	@RequestMapping("/show/{id}/product")
-	public ModelAndView getSingleProductDetail(@PathVariable long id) {
+	public ModelAndView getSingleProductDetail(@PathVariable long id) throws ProductNotFoundException{
 		ModelAndView mv = new ModelAndView("page");
 		Product p = new Product();
+		
 		p = productDao.get(id);
+		if(p == null) throw new ProductNotFoundException();
 		/*Update Count*/
 		p.setViews(p.getViews()+1);
 		productDao.update(p);
