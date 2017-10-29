@@ -1,5 +1,7 @@
 package net.ash.shopping.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,7 @@ import net.ash.shoppingBackend.Model.Product;
 @Controller
 public class PageController {
 
+	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
 //	@RequestMapping("/test")
 	// @RequestParam get the value from query String(url Parameter)
 /*	public ModelAndView test(@RequestParam(value="a", required=false)String str) { // a is url parameter which have String value and str take this value
@@ -42,6 +45,10 @@ public class PageController {
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Home");
+		logger.trace("Hi i am Logger with *************trace************");
+		logger.info("Hi i am Logger with *************info************");
+		logger.debug("Hi i am Logger with *************debug************");
+		logger.error("Hi i am Logger with *************error************");
 		mv.addObject("ctgries", categoryDao.listAll());
 		mv.addObject("userClickHome", true);
 		return mv;
