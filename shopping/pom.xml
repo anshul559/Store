@@ -57,7 +57,14 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
 
 
 		<!-- Jstl -->
@@ -67,7 +74,7 @@
 			<version>1.2</version>
 		</dependency>
 
-	<!--   slf4j-Logging  -->
+		<!-- slf4j-Logging -->
 		<!-- slf4j-api -->
 		<dependency>
 			<groupId>org.slf4j</groupId>

@@ -2,6 +2,8 @@ package net.ash.shoppingBackend.DAOImpl;
 
 import java.util.List;
 
+
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -38,6 +40,7 @@ public class ProductDaoImpl implements ProductDao{
 		ssn = ssnFactory.openSession();
 		try {
 			ssn.persist(pt);
+			ssn.beginTransaction().commit();
 			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -52,6 +55,7 @@ public class ProductDaoImpl implements ProductDao{
 		ssn = ssnFactory.openSession();
 		try {
 			ssn.update(pt);
+			ssn.beginTransaction().commit();
 			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -68,6 +72,7 @@ public class ProductDaoImpl implements ProductDao{
 		try {
 			pt.setActive(false);
 			ssn.update(pt);
+			ssn.beginTransaction().commit();
 			return true;
 		}catch(Exception e) {
 			e.printStackTrace();

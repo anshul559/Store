@@ -21,6 +21,8 @@
                     </li>
                     <li id="contact"><a href="${contextRoot}/contact">Contact us</a>
                     </li>
+                    <li id="manageproducts"><a href="${contextRoot}/manage/products">Manage Products</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

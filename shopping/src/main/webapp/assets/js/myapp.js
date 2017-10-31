@@ -7,6 +7,8 @@ $(document).ready(function(){
 	break;
 	case 'View Product': $('#viewproduct').addClass('active');
 	break;
+	case 'Manage Products': $('#manageproducts').addClass('active');
+	break;
 	default : $('#home').addClass('active');
 	break;
 	}
@@ -80,6 +82,13 @@ $(document).ready(function(){
 		
 		
 	}
+	
+	var $alert = $('.alert');
+		if($alert.length){
+			setTimeut(function(){
+				$alert.fadeOut('slow')
+			}, 3000)
+		}
 	
 	
 });

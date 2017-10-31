@@ -61,6 +61,11 @@ public class Category {
 	public void setCtgryActv(boolean ctgryActv) {
 		this.ctgryActv = ctgryActv;
 	}
+	@Override
+	public String toString() {
+		return "Category [ctgryId=" + ctgryId + ", ctgryActv=" + ctgryActv + ", ctgryName=" + ctgryName + ", ctgryImg="
+				+ ctgryImg + ", ctgryDesc=" + ctgryDesc + "]";
+	}
 
 	
 	
