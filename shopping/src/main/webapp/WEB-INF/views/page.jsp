@@ -37,6 +37,9 @@
 <!-- Add custom CSS here -->
 <link href="${css}/myapp.css" rel="stylesheet">
 
+<!-- Add custom CSS here -->
+<link href="${css}/style.css" rel="stylesheet">
+
 
 </head>
 
@@ -92,14 +95,16 @@
 
 	<!--Bootstrap Jquery Js -->
 	<script src="${js}/bootstrap.js"></script>
+	
+	<!--Bootbox JS -->
+	<script src="${js}/bootbox.min.js"></script>
 	<!--DataTable Jquery JS -->
 	<script src="${js}/jquery.dataTables.js"></script>
 	<!--DataTable Bootstrap JS -->
 	<script src="${js}/dataTables.bootstrap.js"></script>
 
-
-
-
+	
+	
 	<!--Custom JavaScript Js -->
 	<script src="${js}/myapp.js"></script>
 

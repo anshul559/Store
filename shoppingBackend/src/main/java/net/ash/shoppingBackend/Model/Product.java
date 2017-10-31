@@ -101,7 +101,7 @@ public class Product {
 		this.brand = brand;
 	}
 
-	@JsonIgnore
+	
 	public String getDescription() {
 		return description;
 	}
@@ -132,7 +132,7 @@ public class Product {
 	}
 
 	
-	@JsonIgnore
+	
 	public boolean isActive() {
 		return active;
 	}

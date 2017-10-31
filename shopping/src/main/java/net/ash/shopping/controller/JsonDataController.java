@@ -30,6 +30,16 @@ public class JsonDataController {
 		return productDao.getActiveProducts();
 	}
 	
+	@RequestMapping("/admin/all/products")
+	@ResponseBody
+	public List<Product> AllActiveProductsForAdmin(){
+		logger.trace("Hi i am Logger with ***getAllActiveProducts**********trace************");
+		logger.info("Hi i am Logger with *************info************");
+		logger.debug("Hi i am Logger with *************debug************");
+		logger.error("Hi i am Logger with *************error************");
+		return productDao.listAll();
+	}
+	
 	@RequestMapping("/category/{id}/products")
 	@ResponseBody
 	public List<Product> getAllActiveProductsByCategory(@PathVariable long id){
