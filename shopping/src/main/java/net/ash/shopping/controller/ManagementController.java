@@ -47,6 +47,7 @@ public class ManagementController {
 		newPrdct.setActive(true);
 		mv.addObject("product", newPrdct);
 		mv.addObject("title", "Admin Add Products");
+		mv.addObject("edit", false); // edit and add validation for Form
 		if(operation != null) {
 			if(operation.equals("product"))
 				mv.addObject("msg", "Product Saved Successfully");
@@ -62,8 +63,13 @@ public class ManagementController {
 	@RequestMapping(value="/adminaddproducts", method=RequestMethod.POST)
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product addProduct, BindingResult results, Model model, HttpServletRequest req) {
 		/*Check if there any error*/
-		
-		new ProductValidator().validate(addProduct, results);
+		if(addProduct.getId() == 0) {
+			new ProductValidator().validate(addProduct, results);
+		}
+		else {
+			if(!addProduct.getFile().getOriginalFilename().equals(""))
+				new ProductValidator().validate(addProduct, results);
+		}
 		
 		if(results.hasErrors()) {
 			model.addAttribute("userClickAdminAddProducts", true);
@@ -73,7 +79,13 @@ public class ManagementController {
 		}
 		
 		logger.info(addProduct.toString());
+		
+		/*For Adding new Product*/
+		if(addProduct.getId() == 0)
 		productDao.add(addProduct);
+		/*For Updating Existing Product*/
+		else
+			productDao.update(addProduct);
 		
 		if(!addProduct.getFile().getOriginalFilename().equals("")) {
 			FileUploadUtility.uploadFile(req, addProduct.getFile(), addProduct.getCode());
@@ -98,5 +110,16 @@ public class ManagementController {
 		p.setActive(!p.isActive());
 		productDao.update(p);
 		return (isActive)? "Your Product "+ p.getName() +" is Deactivate Successfully by id-"+p.getId() : "Your Product "+ p.getName() +" is Activate Successfully by id-"+p.getId();
+	}
+	
+	@RequestMapping(value="/{id}/admineditproducts" , method=RequestMethod.GET)
+	public ModelAndView adminEditProducts(@PathVariable long id) {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("userClickAdminAddProducts", true);
+		Product exstProduct = productDao.get(id);
+		mv.addObject("product", exstProduct);
+		mv.addObject("title", "Admin Add Products");
+		mv.addObject("edit", true);
+		return mv;
 	}
 }

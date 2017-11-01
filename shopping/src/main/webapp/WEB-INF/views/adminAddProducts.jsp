@@ -10,9 +10,16 @@
 			</div>
 		</c:if>
 		<div class="col-md-offset-2 col-md-8">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h1>Fill Product Details</h1>
+			<c:if test="${edit == false}">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h1>Fill Product Details</h1>
+			</c:if>
+			<c:if test="${edit == true}">
+				<div class="panel panel-danger">
+					<div class="panel-heading" >
+						<h1>Edit Product Details</h1>
+			</c:if>
 				</div>
 				<div class="panel-body">
 					<sf:form class="form-horizontal" modelAttribute="product"
@@ -67,8 +74,12 @@
 						</div>
 						<!-- This is for File upload -->
 						<div class="form-group">
-							<label class="control-label col-md-4" for="file">Upload
-								Image</label>
+							<c:if test="${edit == false}">
+							<label class="control-label col-md-4" for="file">Upload Image</label>
+							</c:if>
+							<c:if test="${edit == true}">
+							<label class="control-label col-md-4" for="file">Upload Image if you want to override previous one</label>
+							</c:if>
 							<div class="col-md-8">
 								<sf:input type="file" path="file" id="file" class="form-control" />
 								<sf:errors path="file" cssClass="help-block" element="em" />

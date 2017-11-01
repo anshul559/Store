@@ -189,7 +189,7 @@ $(document)
 												bSortable : false,
 												mRender : function(data, type, row){
 													str = '';
-													str += '<a href="${contextRoot}/manage/'+data+'/product" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
+													str += '<a href="'+window.contextRoot+'/manage/'+data+'/admineditproducts" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>';
 													return str
 												}
 												
