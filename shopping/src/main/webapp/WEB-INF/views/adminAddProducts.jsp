@@ -92,6 +92,13 @@
 								<sf:select class="form-control" path="categoryId"
 									id="categoryId" items="${categories}" itemLabel="ctgryName"
 									itemValue="ctgryId" />
+									
+									<c:if test="${product.id == 0}">
+										<br>
+										<div class="text-right">
+											<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-warning btn-xs">Add Category</button>
+										</div>
+									</c:if>
 							</div>
 						</div>
 						<div class="form-group">
@@ -110,6 +117,50 @@
 					</sf:form>
 				</div>
 			</div>
-		</div>
-	</div>
+			<div id="myModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+			
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Add Category Details</h4>
+			      </div>
+			      <div class="modal-body">
+			      	<sf:form class="form-horizontal" modelAttribute="category"
+						action="${contextRoot}/manage/category" method="POST">
+					
+						
+						<div class="form-group">
+							<label class="control-label col-md-4" for="ctgryName">Enter
+								Category Name:</label>
+							<div class="col-md-8">
+								<sf:input type="text" path="ctgryName" id="ctgryName"
+									placeholder="Category Name" class="form-control" />
+								<%-- <sf:errors path="name" cssClass="help-block" element="em" /> --%>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-4" for="ctgryDesc">Enter
+								Category Description:</label>
+							<div class="col-md-8">
+								<sf:textarea rows="4" path="ctgryDesc" id="ctgryDesc"
+									placeholder="Category Description" class="form-control" />
+								<%-- <sf:errors path="brand" cssClass="help-block" element="em" /> --%>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-offset-4 col-md-8">
+								<input type="submit" name="submit" id="Category_submit" value="Save"
+									class="btn btn-success" />
+							</div>
+						</div>
+						</sf:form>
+			      </div>
+			    </div>
+			
+			  </div>
+			</div>
 </div>
+	

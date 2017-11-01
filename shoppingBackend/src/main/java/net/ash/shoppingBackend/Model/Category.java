@@ -15,7 +15,7 @@ public class Category {
 
 	private long ctgryId;
 	
-	private boolean ctgryActv;
+	private boolean ctgryActv = true;
 	
 	private String ctgryName;
 	

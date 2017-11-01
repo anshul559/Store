@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
@@ -36,6 +35,7 @@ public class CategoryDaoImpl implements CategoryDao {
 		
 		 try {
 			ssn.persist(ct);
+			ssn.beginTransaction().commit();
 			System.out.println("Object save success");
 			return true;
 		} catch (Exception e) {
@@ -53,7 +53,7 @@ public class CategoryDaoImpl implements CategoryDao {
 		
 		try {
 			ssn.update(ct);
-			
+			ssn.beginTransaction().commit();
 			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -71,7 +71,7 @@ public class CategoryDaoImpl implements CategoryDao {
 		try {
 				ct.setCtgryActv(false);
 				ssn.update(ct);
-				
+				ssn.beginTransaction().commit();
 				return true;
 		}catch(Exception e) {
 			e.printStackTrace();
