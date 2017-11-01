@@ -12,9 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.ash.shopping.springValidator.ProductValidator;
@@ -86,5 +89,14 @@ public class ManagementController {
 		mv.addObject("title", "Admin Show Products");
 		return mv;
 	}
-
+	
+	@RequestMapping(value="/products/{id}/activation", method=RequestMethod.POST)
+	@ResponseBody
+	public String handleProductActivation(@PathVariable long id) {
+		Product p = productDao.get(id);
+		boolean isActive = p.isActive();
+		p.setActive(!p.isActive());
+		productDao.update(p);
+		return (isActive)? "Your Product "+ p.getName() +" is Deactivate Successfully by id-"+p.getId() : "Your Product "+ p.getName() +" is Activate Successfully by id-"+p.getId();
+	}
 }

@@ -217,18 +217,17 @@ $(document)
 																	callback : function(
 																			confirmed) {
 																		if (confirmed) {
-																			console
-																					.log("Value is-"
-																							+ value
-																							+ " and Check is-"
-																							+ check);
-																			bootbox
-																					.alert({
-																						size : "medium",
-																						title : "Information about Product",
-																						message : "You are doing Operation on Product "
-																								+ value
-																					});
+																			console.log("Value is-"+ value+ " and Check is-"+ check);
+																			
+																			var activationUrl = window.contextRoot + '/manage/products/'+ value +'/activation';
+																			$.post(activationUrl, function(data){
+																				bootbox.alert({
+																					size : "medium",
+																					title : "Information about Activation Process",
+																					message : data
+																				});
+																			});
+																			
 																		} else {
 																			checkbox.prop(
 																					'checked',
