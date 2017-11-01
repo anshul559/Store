@@ -35,15 +35,15 @@ public class ManagementController {
 	
 	private static final Logger logger = (Logger) LoggerFactory.getLogger(ManagementController.class);
 	
-	@RequestMapping(value="/products" , method=RequestMethod.GET)
-	public ModelAndView showManageProducts(@RequestParam(name="operation", required=false) String operation) {
+	@RequestMapping(value="/adminaddproducts" , method=RequestMethod.GET)
+	public ModelAndView adminAddProducts(@RequestParam(name="operation", required=false) String operation) {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("userClickManageProducts", true);
+		mv.addObject("userClickAdminAddProducts", true);
 		Product newPrdct = new Product();
 		newPrdct.setSupplierId(1);
 		newPrdct.setActive(true);
 		mv.addObject("product", newPrdct);
-		mv.addObject("title", "Manage Products");
+		mv.addObject("title", "Admin Add Products");
 		if(operation != null) {
 			if(operation.equals("product"))
 				mv.addObject("msg", "Product Saved Successfully");
@@ -56,15 +56,15 @@ public class ManagementController {
 		return categoryDao.listAll();
 	}
 	
-	@RequestMapping(value="/products", method=RequestMethod.POST)
+	@RequestMapping(value="/adminaddproducts", method=RequestMethod.POST)
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product addProduct, BindingResult results, Model model, HttpServletRequest req) {
 		/*Check if there any error*/
 		
 		new ProductValidator().validate(addProduct, results);
 		
 		if(results.hasErrors()) {
-			model.addAttribute("userClickManageProducts", true);
-			model.addAttribute("title", "Manage Products");
+			model.addAttribute("userClickAdminAddProducts", true);
+			model.addAttribute("title", "Admin Add Products");
 			model.addAttribute("msg", "Save Process Failed Data not save");
 			return "page";
 		}
@@ -76,7 +76,15 @@ public class ManagementController {
 			FileUploadUtility.uploadFile(req, addProduct.getFile(), addProduct.getCode());
 		}
 		
-		return "redirect:/manage/products?operation=product";
+		return "redirect:/manage/adminaddproducts?operation=product";
+	}
+	
+	@RequestMapping(value="/adminshowproducts" , method=RequestMethod.GET)
+	public ModelAndView adminShowProducts() {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("userClickAdminShowProducts", true);
+		mv.addObject("title", "Admin Show Products");
+		return mv;
 	}
 
 }

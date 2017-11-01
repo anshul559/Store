@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<ol class="breadcrumb">
-				<li><a href="${contextRoot}/Home">Home</a></li>
+				<li><a href="${contextRoot}/home">Home</a></li>
 				<li><a href="${contextRoot}/show/all/products">Products</a></li>
 				<li class="active">${product.name}</li>
 			</ol>
@@ -13,7 +13,7 @@
 		<!-- Display of Product image -->
 		<div class="col-xs-12 col-sm-4">
 			<div class="thumbnail">
-					<img src="${images}/${product.code}.jpg" />				
+					<img src="${images}/${product.code}.jpg" class="img img-responsive"/>				
 			</div>
 		</div>
 		<!-- Display of Product Description -->

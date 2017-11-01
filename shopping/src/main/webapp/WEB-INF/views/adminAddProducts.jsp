@@ -16,7 +16,7 @@
 				</div>
 				<div class="panel-body">
 					<sf:form class="form-horizontal" modelAttribute="product"
-						action="${contextRoot}/manage/products" method="POST"
+						action="${contextRoot}/manage/adminaddproducts" method="POST"
 						enctype="multipart/form-data">
 						<div class="form-group">
 							<label class="control-label col-md-4" for="name">Enter
@@ -98,79 +98,6 @@
 						<sf:hidden path="views" />
 					</sf:form>
 				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<h1>Available Products</h1>
-		</div>
-		<hr>
-		<div class="col-xs-12">
-			<div style="overflow: auto;">
-				<table class="table table-striped table-bordered"
-					id="adminProdutsTable">
-					<thead>
-						<tr>
-							<th>id</th>
-							<th>Image</th>
-							<th>Name</th>
-							<th>Quantity</th>
-							<th>UnitPrice</th>
-							<th>Active</th>
-							<th>Edit</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>2</td>
-							<td><img alt=""
-								src="${contextRoot}/resources/images/PRDDEF123DEFX.jpg"
-								class="adminDataTableImg"></td>
-							<td>Samsung s7</td>
-							<td>20</td>
-							<td>&#8360;</td>
-							<td>
-								<label class="switch"> 
-									<input type="checkbox" checked value="2"> 
-										<span class="slider round"></span>
-								</label>
-							</td>
-							<td>
-								<a href="${contextRoot}/manage/2/product" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-							</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td><img alt=""
-								src="${contextRoot}/resources/images/PRDDEF123DEFX.jpg"
-								class="adminDataTableImg"></td>
-							<td>Samsung s7</td>
-							<td>20</td>
-							<td>&#8360;</td>
-							<td>
-								<label class="switch"> 
-									<input type="checkbox" value="2"> 
-										<span class="slider round"></span>
-								</label>
-							</td>
-							<td>
-								<a href="${contextRoot}/manage/2/product" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-							</td>
-						</tr>
-					</tbody>
-					<tfoot>
-						<tr>
-							<th>id</th>
-							<th>Image</th>
-							<th>Name</th>
-							<th>Quantity</th>
-							<th>UnitPrice</th>
-							<th>Active</th>
-							<th>Edit</th>
-						</tr>
-					</tfoot>
-				</table>
 			</div>
 		</div>
 	</div>

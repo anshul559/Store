@@ -24,8 +24,8 @@
 	window.contextRoot = "${contextRoot}";
 </script>
 
-<!--Readable Custom Theme CSS -->
-<link href="${css}/mytheme.css" rel="stylesheet">
+<%-- <!--Readable Custom Theme CSS -->
+<link href="${css}/mytheme.css" rel="stylesheet"> --%>
 
 <!-- Bootstrap core CSS -->
 <link href="${css}/bootstrap.css" rel="stylesheet">
@@ -78,9 +78,14 @@
 				<%@include file="singleProduct.jsp"%>
 			</c:if>
 			
-			<!--Loading only when click single manage produts button-->
-			<c:if test="${userClickManageProducts == true}">
-				<%@include file="manageProducts.jsp"%>
+			<!--Loading only when click Admin Add button-->
+			<c:if test="${userClickAdminAddProducts == true}">
+				<%@include file="adminAddProducts.jsp"%>
+			</c:if>
+			
+			<!--Loading only when click Admin Show button-->
+			<c:if test="${userClickAdminShowProducts == true}">
+				<%@include file="adminShowProducts.jsp"%>
 			</c:if>
 
 		</div>
