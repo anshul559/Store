@@ -127,7 +127,7 @@
 			        <h4 class="modal-title">Add Category Details</h4>
 			      </div>
 			      <div class="modal-body">
-			      	<sf:form class="form-horizontal" modelAttribute="category"
+			      	<sf:form id="categoryForm" class="form-horizontal" modelAttribute="category"
 						action="${contextRoot}/manage/category" method="POST">
 					
 						
@@ -137,7 +137,7 @@
 							<div class="col-md-8">
 								<sf:input type="text" path="ctgryName" id="ctgryName"
 									placeholder="Category Name" class="form-control" />
-								<%-- <sf:errors path="name" cssClass="help-block" element="em" /> --%>
+								 <%-- <sf:errors path="ctgryName"  element="em" /> --%> 
 							</div>
 						</div>
 
@@ -147,7 +147,7 @@
 							<div class="col-md-8">
 								<sf:textarea rows="4" path="ctgryDesc" id="ctgryDesc"
 									placeholder="Category Description" class="form-control" />
-								<%-- <sf:errors path="brand" cssClass="help-block" element="em" /> --%>
+								 <%-- <sf:errors path="ctgryDesc"  element="em" />  --%>
 							</div>
 						</div>
 						<div class="form-group">

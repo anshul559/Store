@@ -242,4 +242,36 @@ $(document)
 
 					}
 					
+		/*-------------Jquery Validation--------------*/			
+			var $categoryForm = $('#categoryForm');
+			if($categoryForm.length){
+			$categoryForm.validate({
+				rules: {
+							ctgryName: {
+									required : true,
+									minlength : 5
+							},
+							ctgryDesc: {
+									required : true
+							},
+							messages : {
+								 
+								ctgryName : {
+									 required : 'Add Category Name field should not empty',
+										 minlength: 'Keep typing, at least 5 characters required!'
+								 },
+								 ctgryDesc : {
+									 required : 'Add Category Description field should not empty'
+								 }
+							},
+							errorElement : 'em',
+							errorPlacement : function(error, element){
+								error.addClass('help-block');
+								error.insertBefore(element);
+							}
+				}
+			});
+			}
+					
+					/*---------------------*/
 				});

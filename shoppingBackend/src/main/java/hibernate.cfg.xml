@@ -4,17 +4,20 @@
 		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost/Besant</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">5590</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost/Besant</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">5590</property>
         
-        <property name="hibernate.connection.pool_size">1</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.hbm2dll.auto">update</property>
-        <property name="hibernate.show_sql">true</property>
-        
+        <property name="dialect">org.hibernate.dialect.MySQL57Dialect</property>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+        <property name="hbm2dll.auto">update</property>
         <mapping class="net.ash.shoppingBackend.Model.Category"/>
         <mapping class="net.ash.shoppingBackend.Model.Product"/>
+        <mapping class="net.ash.shoppingBackend.Model.UserDetail"/>
+        <mapping class="net.ash.shoppingBackend.Model.Address"/>
+        <mapping class="net.ash.shoppingBackend.Model.Cart"/>
+     
     </session-factory>
 </hibernate-configuration>

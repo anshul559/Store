@@ -6,6 +6,7 @@ CREATE table category(
 	description VARCHAR(255) 
 );
 
+
 CREATE TABLE user_detail (
 	id BIGINT not null primary key auto_increment,
 	first_name VARCHAR(50),
@@ -30,8 +31,45 @@ CREATE TABLE product (
 	supplier_id BIGINT,
 	purchases INT DEFAULT 0,
 	views INT DEFAULT 0,
+	FOREIGN KEY (category_id) REFERENCES category(id),
 	FOREIGN KEY (supplier_id) REFERENCES user_detail(id)
  		
+);
+
+CREATE TABLE address (
+	id BIGINT not null primary key auto_increment,
+	user_id BIGINT,
+	address_line_one VARCHAR(100),
+	address_line_two VARCHAR(100),
+	city VARCHAR(20),
+	state VARCHAR(20),
+	country VARCHAR(20),
+	postal_code VARCHAR(10),
+	is_billing BOOLEAN,
+	is_shipping BOOLEAN,
+	FOREIGN KEY (user_id ) REFERENCES user_detail (id)
+);
+
+-- the cart table to store the user cart top-level details
+CREATE TABLE cart (
+	id BIGINT not null primary key auto_increment,
+	user_id BIGINT,
+	grand_total DECIMAL(10,2),
+	cart_lines int,
+	FOREIGN KEY (user_id ) REFERENCES user_detail (id)
+);
+-- the cart line table to store the cart details
+
+CREATE TABLE cart_line (
+	id BIGINT not null primary key auto_increment,
+	cart_id BIGINT,
+	total DECIMAL(10,2),
+	product_id BIGINT,
+	product_count int,
+	buying_price DECIMAL(10,2),
+	is_available boolean,
+	FOREIGN KEY (product_id ) REFERENCES product (id)
+	
 );
 
 
@@ -64,7 +102,3 @@ INSERT INTO product (code, name, brand, description, unit_price, quantity, is_ac
 VALUES ('PRDMNO123PQRX', ' Macbook Pro', 'apple', 'This is one of the best laptops available in the market right now!', 54000, 3, true, 1, 2, 0, 0 );
 INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
 VALUES ('PRDABCXYZDEFX', 'Dell Latitude E6510', 'dell', 'This is one of the best laptop series from dell that can be used!', 48000, 5, true, 1, 3, 0, 0 );
-
-
-
-

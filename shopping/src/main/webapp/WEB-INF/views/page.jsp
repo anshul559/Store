@@ -37,8 +37,8 @@
 <!-- Add custom CSS here -->
 <link href="${css}/myapp.css" rel="stylesheet">
 
-<!-- Add custom CSS here -->
-<link href="${css}/style.css" rel="stylesheet">
+<%-- <!-- Add custom CSS here -->
+<link href="${css}/style.css" rel="stylesheet"> --%>
 
 
 </head>
@@ -97,7 +97,10 @@
 
 	<!-- Main Jquery -->
 	<script src="${js}/jquery.js"></script>
-
+	
+	<!--Jquery Validator-->
+	<script src="${js}/jquery.validate.js"></script>
+	
 	<!--Bootstrap Jquery Js -->
 	<script src="${js}/bootstrap.js"></script>
 	
